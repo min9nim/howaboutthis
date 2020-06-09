@@ -11,7 +11,7 @@ function App() {
     req('get-menus').then(res => {
       setList(res.result)
     })
-  })
+  }, [])
   function addMenu() {
     req('add-menu', { title, category, url })
   }

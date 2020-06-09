@@ -28,6 +28,8 @@ function App() {
       <div className="item">
         <button onClick={addMenu}>추가</button>
       </div>
+      <hr />
+      <h2>식당 목록</h2>
     </div>
   )
 }

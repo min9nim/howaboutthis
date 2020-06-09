@@ -1,27 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import req, { webscrap } from '../utils/req'
+import './MenuList.scss'
 
-function App() {
-  const [list, setList] = useState([])
-  useEffect(() => {
-    req('get-menus')
-      .then(res => {
-        return Promise.all(
-          res.result.map(async menu => {
-            menu.info = await webscrap(menu.url)
-            return menu
-          }),
-        )
-      })
-      .then(setList)
-  }, [])
-
+export default function MenuList({ list, setSelected }) {
   return (
     <div className="menuList">
       <h2>식당 목록</h2>
       <ul>
         {list.map(({ _id, title, category, url, info }) => (
-          <li key={_id}>
+          <li
+            key={_id}
+            onClick={() => {
+              console.log(222, { _id, title, category, url, info })
+              setSelected({ _id, title, category, url, info })
+            }}
+          >
             <div>
               <h4>{title}</h4>
               <div>
@@ -37,5 +29,3 @@ function App() {
     </div>
   )
 }
-
-export default App

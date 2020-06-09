@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import req from './utils/req'
+import req, { webscrap } from './utils/req'
+import MenuList from './components/MenuList'
 import './App.scss'
 
 function App() {
@@ -8,9 +9,16 @@ function App() {
   const [url, setUrl] = useState('')
   const [list, setList] = useState([])
   useEffect(() => {
-    req('get-menus').then(res => {
-      setList(res.result)
-    })
+    req('get-menus')
+      .then(res => {
+        return Promise.all(
+          res.result.map(async menu => {
+            menu.info = await webscrap(menu.url)
+            return menu
+          }),
+        )
+      })
+      .then(setList)
   }, [])
   function addMenu() {
     req('add-menu', { title, category, url })
@@ -35,12 +43,7 @@ function App() {
         <button onClick={addMenu}>추가</button>
       </div>
       <hr />
-      <h2>식당 목록</h2>
-      <ul>
-        {list.map(({ _id, title, category, url }) => (
-          <li key={_id}>{title}</li>
-        ))}
-      </ul>
+      <MenuList />
     </div>
   )
 }

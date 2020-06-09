@@ -13,3 +13,13 @@ export default function req(path, data) {
     body: JSON.stringify(data), // body data type must match "Content-Type" header
   }).then(res => res.json())
 }
+
+export function webscrap(url) {
+  return fetch('https://webscrap.now.sh/webscrap', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ url }),
+  }).then(res => res.json())
+}

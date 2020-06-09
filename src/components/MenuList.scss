@@ -1,7 +1,27 @@
 .menuList {
   ul {
     li {
-      cursor: pointer;
+      .wrapper {
+        margin-bottom: 0;
+        cursor: pointer;
+        h4 {
+          margin-bottom: 10px;
+        }
+        .content {
+          display: flex;
+          .desc {
+            margin-right: 20px;
+          }
+          .image {
+            img {
+              width: 200px;
+            }
+          }
+        }
+        button {
+          margin: 20px 0;
+        }
+      }
     }
   }
 }

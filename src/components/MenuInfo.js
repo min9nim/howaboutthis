@@ -12,7 +12,7 @@ export default function MenuInfo({ menu = {} }) {
 
   return (
     <div className="MenuInfo">
-      <h2>식당 정보</h2>
+      <h2>식당 추가</h2>
       <div className="item">
         <label>URL: </label>
         <input value={url} onChange={e => setUrl(e.target.value)} />
@@ -27,8 +27,6 @@ export default function MenuInfo({ menu = {} }) {
       </div>
       <div className="item">
         <button onClick={addMenu}>추가</button>
-        <button onClick={addMenu}>저장</button>
-        <button onClick={addMenu}>삭제</button>
       </div>
     </div>
   )

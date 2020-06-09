@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
+import req from './utils/req'
 import './App.scss'
-
-const API_URL = 'https://howaboutthis-api/api/add-menu'
 
 function App() {
   const [title, setTitle] = useState('')
   const [category, setCategory] = useState('')
   const [url, setUrl] = useState('')
   function addMenu() {
-    console.log('API_URL', API_URL)
+    req('add-menu', { title, category, url })
   }
   return (
     <div className="App">

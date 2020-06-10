@@ -30,7 +30,7 @@ export default function MenuList({ list, setList }) {
           <h2>식당 목록</h2>
         </div>
         <div className="randomButton">
-          <button onClick={() => toSlack()}>랜덤추천</button>
+          <button onClick={() => toSlack()}>랜덤추천 to {window.$SLACK_CHANNEL}</button>
         </div>
       </header>
       <ul>

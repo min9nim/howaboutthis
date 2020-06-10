@@ -33,6 +33,9 @@ export function messageToSlack(text) {
     // headers: {
     //   'Content-Type': 'application/json',
     // },
-    body: JSON.stringify({ text }),
+    body: JSON.stringify({
+      text,
+      // channel: process.env.REACT_APP_SLACK_CHANNEL
+    }),
   }).then(res => res.text())
 }

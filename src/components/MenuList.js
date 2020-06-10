@@ -5,11 +5,8 @@ import './MenuList.scss'
 import req, { messageToSlack } from '../utils/req'
 import { stop } from '../utils'
 
-const toSlack = async ({ title, url, image, desc }) => {
-  const message = `오늘 메뉴 추천 🌈🚀
-${title}
-${url}`
-  await messageToSlack(message)
+const toSlack = async _id => {
+  await req('menu-to-slack?_id=' + _id)
 }
 
 export default function MenuList({ list, setList }) {
@@ -41,7 +38,7 @@ export default function MenuList({ list, setList }) {
                   <div className="description">{desc}</div>
                   <div>
                     <button onClick={stop(() => deleteMenu(_id))}>삭제</button>
-                    <button onClick={stop(() => toSlack({ title, url, image, desc }))}>슬랙전송</button>
+                    <button onClick={stop(() => toSlack(_id))}>슬랙전송</button>
                   </div>
                 </div>
                 <div className="image">

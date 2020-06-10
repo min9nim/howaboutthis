@@ -1,25 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import req, { webscrap } from './utils/req'
 import MenuList from './components/MenuList'
 import MenuInfo from './components/MenuInfo'
 import Loading from './components/Loading'
-import { assoc, prop } from 'ramda'
+import { init } from './App.fn'
 import './App.scss'
 
 function App() {
   const [list, setList] = useState(null)
   useEffect(() => {
-    req('setting')
-      .then(prop('result'))
-      .then(setting => {
-        window.$SLACK_CHANNEL = setting.SLACK_CHANNEL
-      })
     console.log('REACT_APP_WEBSCRAP_URL', process.env.REACT_APP_WEBSCRAP_URL)
     console.log('REACT_APP_API_URL', process.env.REACT_APP_API_URL)
     console.log('REACT_APP_SLACK_URL', process.env.REACT_APP_SLACK_URL)
     console.log('REACT_APP_SLACK_CHANNEL', process.env.REACT_APP_SLACK_CHANNEL)
 
-    req('get-menus').then(prop('result')).then(setList)
+    init({ setList })
   }, [])
 
   return (

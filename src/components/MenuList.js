@@ -3,14 +3,16 @@ import { getHostname } from 'mingutils'
 import { propEq, complement } from 'ramda'
 import './MenuList.scss'
 import req, { messageToSlack } from '../utils/req'
-import { stop } from '../utils'
+import { stop, loading } from '../utils'
 
 const toSlack = async _id => {
+  loading(true)
   if (_id) {
     await req('menu-to-slack?_id=' + _id)
   } else {
     await req('menu-to-slack')
   }
+  loading(false)
 }
 
 export default function MenuList({ list, setList }) {

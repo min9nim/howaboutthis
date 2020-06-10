@@ -2,9 +2,12 @@
   header {
     display: flex;
     justify-content: space-between;
-    .randomButton {
+    .menu {
       display: flex;
       align-items: center;
+      button {
+        margin: 0 2px;
+      }
     }
   }
   ul {

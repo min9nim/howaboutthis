@@ -62,7 +62,7 @@ export default function MenuInfo({ setList }) {
         <div className="image">{image && <img src={image} alt="식당이미지" />}</div>
       </div>
       <div className="item">
-        <button onClick={addMenu}>추가</button>
+        <button onClick={addMenu}>저장</button>
       </div>
     </div>
   )

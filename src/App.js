@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react'
 import req, { webscrap } from './utils/req'
 import MenuList from './components/MenuList'
 import MenuInfo from './components/MenuInfo'
+import Loading from './components/Loading'
 import { assoc, prop } from 'ramda'
 import './App.scss'
 
 function App() {
-  const [list, setList] = useState([])
+  const [list, setList] = useState(null)
   useEffect(() => {
     req('setting')
       .then(prop('result'))
@@ -25,7 +26,7 @@ function App() {
     <div className="App">
       <MenuInfo setList={setList} />
       <hr />
-      <MenuList list={list} setList={setList} />
+      {!list ? <Loading /> : <MenuList list={list} setList={setList} />}
     </div>
   )
 }

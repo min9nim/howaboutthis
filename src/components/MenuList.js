@@ -6,7 +6,10 @@ import req from '../utils/req'
 
 export default function MenuList({ list, setList }) {
   const deleteMenu = async _id => {
-    console.log('_id', _id)
+    if (!window.confirm('삭제합니다')) {
+      return
+    }
+
     await req('delete-menu', { _id })
     setList(list => list.filter(complement(propEq('_id', _id))))
   }

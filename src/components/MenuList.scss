@@ -1,4 +1,12 @@
 .menuList {
+  header {
+    display: flex;
+    justify-content: space-between;
+    .randomButton {
+      display: flex;
+      align-items: center;
+    }
+  }
   ul {
     li {
       .wrapper {

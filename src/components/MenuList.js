@@ -6,7 +6,11 @@ import req, { messageToSlack } from '../utils/req'
 import { stop } from '../utils'
 
 const toSlack = async _id => {
-  await req('menu-to-slack?_id=' + _id)
+  if (_id) {
+    await req('menu-to-slack?_id=' + _id)
+  } else {
+    await req('menu-to-slack')
+  }
 }
 
 export default function MenuList({ list, setList }) {
@@ -21,7 +25,14 @@ export default function MenuList({ list, setList }) {
 
   return (
     <div className="menuList">
-      <h2>식당 목록</h2>
+      <header>
+        <div>
+          <h2>식당 목록</h2>
+        </div>
+        <div className="randomButton">
+          <button onClick={() => toSlack()}>랜덤추천</button>
+        </div>
+      </header>
       <ul>
         {list.map(({ _id, title, url, image, desc }) => (
           <li key={_id}>

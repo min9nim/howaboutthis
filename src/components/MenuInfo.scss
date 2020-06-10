@@ -6,5 +6,18 @@
         width: 200px;
       }
     }
+    .input {
+      width: 100%;
+      .item {
+        display: flex;
+        label {
+          display: inline-block;
+          width: 70px;
+        }
+        input {
+          flex: 1;
+        }
+      }
+    }
   }
 }

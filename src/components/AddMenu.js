@@ -3,7 +3,7 @@ import req, { webscrap } from '../utils/req'
 import { append, prop } from 'ramda'
 import './AddMenu.scss'
 
-export default function AddMenu({ setList }) {
+export default function AddMenu({ setList, setAddMenuVisible }) {
   const [url, setUrl] = useState('')
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('')
@@ -35,6 +35,7 @@ export default function AddMenu({ setList }) {
     setTitle('')
     setDesc('')
     setImage('')
+    setAddMenuVisible(false)
   }
 
   return (

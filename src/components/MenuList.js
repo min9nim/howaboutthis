@@ -16,7 +16,7 @@ const toSlack = async _id => {
   loading(false)
 }
 
-export default function MenuList({ list, setList }) {
+export default function MenuList({ list, setList, setAddMenuVisible }) {
   const deleteMenu = async _id => {
     if (!window.confirm('삭제합니다')) {
       return
@@ -33,7 +33,7 @@ export default function MenuList({ list, setList }) {
           <h2>강남역 식당</h2>
         </div>
         <div className="menu">
-          <button onClick={() => toSlack()}>식당추가</button>
+          <button onClick={() => setAddMenuVisible(true)}>식당추가</button>
           <button onClick={() => toSlack()}>랜덤추천 to {window.$SLACK_CHANNEL}</button>
         </div>
       </header>

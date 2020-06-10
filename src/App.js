@@ -6,6 +6,7 @@ import './App.scss'
 
 function App() {
   const [list, setList] = useState(null)
+  const [addMenuVisbile, setAddMenuVisible] = useState(false)
   useEffect(() => {
     console.log('REACT_APP_WEBSCRAP_URL', process.env.REACT_APP_WEBSCRAP_URL)
     console.log('REACT_APP_API_URL', process.env.REACT_APP_API_URL)
@@ -17,9 +18,9 @@ function App() {
 
   return (
     <div className="App">
-      <AddMenu setList={setList} />
+      {addMenuVisbile && <AddMenu setList={setList} setAddMenuVisible={setAddMenuVisible} />}
       <hr />
-      <MenuList list={list} setList={setList} />
+      <MenuList list={list} setList={setList} setAddMenuVisible={setAddMenuVisible} />
     </div>
   )
 }

@@ -29,7 +29,12 @@ export default function MenuList({ list, setList }) {
           <li key={_id}>
             <div className="wrapper">
               <h4>{title}</h4>
-              <div className="content">
+              <div
+                className="content"
+                onClick={() => {
+                  window.open(url, '_blank')
+                }}
+              >
                 <div className="desc">
                   <div>{getHostname(url)}</div>
                   <div>{desc}</div>

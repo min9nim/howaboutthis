@@ -5,21 +5,28 @@
         margin-bottom: 0;
         cursor: pointer;
         h4 {
-          margin-bottom: 10px;
+          margin-bottom: 5px;
         }
         .content {
           display: flex;
           .desc {
             margin-right: 20px;
+            .url {
+              color: darkolivegreen;
+            }
+            .description {
+              margin-top: 10px;
+              color: gray;
+            }
+            button {
+              margin: 20px 2px;
+            }
           }
           .image {
             img {
               width: 200px;
             }
           }
-        }
-        button {
-          margin: 20px 2px;
         }
       }
     }

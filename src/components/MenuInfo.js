@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import req, { webscrap } from '../utils/req'
-import { append } from 'ramda'
+import { append, prop } from 'ramda'
 import './MenuInfo.scss'
 
 export default function MenuInfo({ setList }) {
@@ -17,7 +17,19 @@ export default function MenuInfo({ setList }) {
   }
 
   const addMenu = async () => {
-    const { result } = await req('add-menu', { title, url, desc, image })
+    let result
+    if (!url) {
+      const text = await navigator.clipboard.readText()
+      if (text.indexOf('http') === 0) {
+        const info = await webscrap(text)
+        result = await req('add-menu', info).then(prop('result'))
+      } else {
+        alert('url 을 입력해 주세요')
+        return
+      }
+    } else {
+      result = await req('add-menu', { title, url, desc, image }).then(prop('result'))
+    }
     setList(append(result))
     setUrl('')
     setTitle('')

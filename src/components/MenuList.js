@@ -3,6 +3,7 @@ import { getHostname } from 'mingutils'
 import { propEq, complement } from 'ramda'
 import './MenuList.scss'
 import req, { messageToSlack } from '../utils/req'
+import { stop } from '../utils'
 
 const toSlack = async ({ title, url, image, desc }) => {
   const message = `오늘 메뉴 추천 🌈🚀
@@ -36,15 +37,17 @@ export default function MenuList({ list, setList }) {
                 }}
               >
                 <div className="desc">
-                  <div>{getHostname(url)}</div>
-                  <div>{desc}</div>
+                  <div className="url">{getHostname(url)}</div>
+                  <div className="description">{desc}</div>
+                  <div>
+                    <button onClick={stop(() => deleteMenu(_id))}>삭제</button>
+                    <button onClick={stop(() => toSlack({ title, url, image, desc }))}>슬랙전송</button>
+                  </div>
                 </div>
                 <div className="image">
                   <img src={image} alt={title} />
                 </div>
               </div>
-              <button onClick={() => deleteMenu(_id)}>삭제</button>
-              <button onClick={() => toSlack({ title, url, image, desc })}>슬랙전송</button>
             </div>
           </li>
         ))}

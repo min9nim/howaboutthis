@@ -2,7 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { getHostname } from 'mingutils'
 import { propEq, complement } from 'ramda'
 import './MenuList.scss'
-import req from '../utils/req'
+import req, { messageToSlack } from '../utils/req'
+
+const toSlack = async ({ title, url, image, desc }) => {
+  const message = `오늘 메뉴 추천 🌈🚀
+${title}
+${url}`
+  await messageToSlack(message)
+}
 
 export default function MenuList({ list, setList }) {
   const deleteMenu = async _id => {
@@ -32,6 +39,7 @@ export default function MenuList({ list, setList }) {
                 </div>
               </div>
               <button onClick={() => deleteMenu(_id)}>삭제</button>
+              <button onClick={() => toSlack({ title, url, image, desc })}>슬랙전송</button>
             </div>
           </li>
         ))}

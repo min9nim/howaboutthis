@@ -19,6 +19,10 @@ export default function MenuInfo({ setList }) {
   const addMenu = async () => {
     const { result } = await req('add-menu', { title, url, desc, image })
     setList(append(result))
+    setUrl('')
+    setTitle('')
+    setDesc('')
+    setImage('')
   }
 
   return (

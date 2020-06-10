@@ -17,7 +17,7 @@ export default function req(path, data) {
 export function webscrap(url) {
   console.log('process.env.REACT_APP_WEBSCRAP_URL', process.env.REACT_APP_WEBSCRAP_URL)
   // return fetch(process.env.REACT_APP_WEBSCRAP_URL, {
-  return fetch('https://webscrap.now.sh/webscrap', {
+  return fetch(process.env.REACT_APP_WEBSCRAP_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

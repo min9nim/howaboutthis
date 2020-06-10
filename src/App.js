@@ -8,7 +8,9 @@ import './App.scss'
 function App() {
   const [list, setList] = useState([])
   useEffect(() => {
-    console.log('process.env.REACT_APP_WEBSCRAP_URL', process.env.REACT_APP_WEBSCRAP_URL)
+    console.log('REACT_APP_WEBSCRAP_URL', process.env.REACT_APP_WEBSCRAP_URL)
+    console.log('REACT_APP_API_URL', process.env.REACT_APP_API_URL)
+    console.log('REACT_APP_SLACK_URL', process.env.REACT_APP_SLACK_URL)
     req('get-menus').then(prop('result')).then(setList)
   }, [])
 

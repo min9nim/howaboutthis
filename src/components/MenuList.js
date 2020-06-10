@@ -4,6 +4,7 @@ import { propEq, complement } from 'ramda'
 import './MenuList.scss'
 import req, { messageToSlack } from '../utils/req'
 import { stop, loading } from '../utils'
+import Loading from './Loading'
 
 const toSlack = async _id => {
   loading(true)
@@ -29,38 +30,42 @@ export default function MenuList({ list, setList }) {
     <div className="menuList">
       <header>
         <div>
-          <h2>식당 목록</h2>
+          <h2>강남역 식당</h2>
         </div>
         <div className="randomButton">
           <button onClick={() => toSlack()}>랜덤추천 to {window.$SLACK_CHANNEL}</button>
         </div>
       </header>
       <ul>
-        {list.map(({ _id, title, url, image, desc }) => (
-          <li key={_id}>
-            <div className="wrapper">
-              <h4>{title}</h4>
-              <div
-                className="content"
-                onClick={() => {
-                  window.open(url, '_blank')
-                }}
-              >
-                <div className="desc">
-                  <div className="url">{getHostname(url)}</div>
-                  <div className="description">{desc}</div>
-                  <div>
-                    <button onClick={stop(() => deleteMenu(_id))}>삭제</button>
-                    <button onClick={stop(() => toSlack(_id))}>슬랙전송</button>
+        {!list ? (
+          <Loading />
+        ) : (
+          list.map(({ _id, title, url, image, desc }) => (
+            <li key={_id}>
+              <div className="wrapper">
+                <h4>{title}</h4>
+                <div
+                  className="content"
+                  onClick={() => {
+                    window.open(url, '_blank')
+                  }}
+                >
+                  <div className="desc">
+                    <div className="url">{getHostname(url)}</div>
+                    <div className="description">{desc}</div>
+                    <div>
+                      <button onClick={stop(() => deleteMenu(_id))}>삭제</button>
+                      <button onClick={stop(() => toSlack(_id))}>슬랙전송</button>
+                    </div>
+                  </div>
+                  <div className="image">
+                    <img src={image} alt={title} />
                   </div>
                 </div>
-                <div className="image">
-                  <img src={image} alt={title} />
-                </div>
               </div>
-            </div>
-          </li>
-        ))}
+            </li>
+          ))
+        )}
       </ul>
     </div>
   )

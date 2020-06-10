@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import MenuList from './components/MenuList'
 import MenuInfo from './components/MenuInfo'
-import Loading from './components/Loading'
 import { init } from './App.fn'
 import './App.scss'
 
@@ -20,7 +19,7 @@ function App() {
     <div className="App">
       <MenuInfo setList={setList} />
       <hr />
-      {!list ? <Loading /> : <MenuList list={list} setList={setList} />}
+      <MenuList list={list} setList={setList} />
     </div>
   )
 }

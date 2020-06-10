@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import req, { webscrap } from '../utils/req'
 import { append, prop } from 'ramda'
-import './MenuInfo.scss'
+import './AddMenu.scss'
 
-export default function MenuInfo({ setList }) {
+export default function AddMenu({ setList }) {
   const [url, setUrl] = useState('')
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('')

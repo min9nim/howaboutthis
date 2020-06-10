@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import MenuList from './components/MenuList'
-import MenuInfo from './components/MenuInfo'
+import AddMenu from './components/AddMenu'
 import { init } from './App.fn'
 import './App.scss'
 
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="App">
-      <MenuInfo setList={setList} />
+      <AddMenu setList={setList} />
       <hr />
       <MenuList list={list} setList={setList} />
     </div>

@@ -62,8 +62,9 @@ export default function AddMenu({ setList, setAddMenuVisible }) {
         </div>
         <div className="image">{image && <img src={image} alt="식당이미지" />}</div>
       </div>
-      <div className="item">
+      <div className="btnGroup">
         <button onClick={addMenu}>저장</button>
+        <button onClick={() => setAddMenuVisible(false)}>취소</button>
       </div>
     </div>
   )

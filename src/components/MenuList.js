@@ -71,7 +71,7 @@ export default function MenuList({ list, setList, setAddMenuVisible, setAniLoadi
                       window.open(url, '_blank')
                     }}
                   >
-                    {getHostname(url)}
+                    {url && getHostname(url)}
                   </div>
                   <div
                     className="description"

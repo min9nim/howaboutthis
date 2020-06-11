@@ -20,16 +20,11 @@ function App() {
 
   return (
     <div className="App">
-      {aniLoading ? (
-        <Loading />
-      ) : (
-        <>
-          {addMenuVisible && (
-            <AddMenu setList={setList} setAddMenuVisible={setAddMenuVisible} setAniLoading={setAniLoading} />
-          )}
-          <MenuList list={list} setList={setList} setAddMenuVisible={setAddMenuVisible} setAniLoading={setAniLoading} />
-        </>
+      {aniLoading && <Loading />}
+      {addMenuVisible && (
+        <AddMenu setList={setList} setAddMenuVisible={setAddMenuVisible} setAniLoading={setAniLoading} />
       )}
+      <MenuList list={list} setList={setList} setAddMenuVisible={setAddMenuVisible} setAniLoading={setAniLoading} />
     </div>
   )
 }

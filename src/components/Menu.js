@@ -1,6 +1,7 @@
 import React from 'react'
 import { getHostname } from 'mingutils'
 import { stop } from '../utils'
+import './Menu.scss'
 
 export default function Menu({ _id, title, url, image, desc, deleteMenu, toSlack }) {
   return (

@@ -15,14 +15,16 @@ const toSlack = async _id => {
   loading(false)
 }
 
-export default function MenuList({ list, setList, setAddMenuVisible }) {
+export default function MenuList({ list, setList, setAddMenuVisible, setAniLoading }) {
   const deleteMenu = async _id => {
     if (!window.confirm('삭제합니다')) {
       return
     }
 
+    setAniLoading(true)
     await req('delete-menu', { _id })
     setList(list => list.filter(complement(propEq('_id', _id))))
+    setAniLoading(false)
   }
 
   return (

@@ -24,8 +24,10 @@ function App() {
         <Loading />
       ) : (
         <>
-          {addMenuVisible && <AddMenu setList={setList} setAddMenuVisible={setAddMenuVisible} />}
-          <MenuList list={list} setList={setList} setAddMenuVisible={setAddMenuVisible} />
+          {addMenuVisible && (
+            <AddMenu setList={setList} setAddMenuVisible={setAddMenuVisible} setAniLoading={setAniLoading} />
+          )}
+          <MenuList list={list} setList={setList} setAddMenuVisible={setAddMenuVisible} setAniLoading={setAniLoading} />
         </>
       )}
     </div>

@@ -8,7 +8,7 @@ import Loading from './components/Loading'
 function App() {
   const [list, setList] = useState([])
   const [aniLoading, setAniLoading] = useState(false)
-  const [addMenuVisbile, setAddMenuVisible] = useState(false)
+  const [addMenuVisible, setAddMenuVisible] = useState(false)
   useEffect(() => {
     console.log('REACT_APP_WEBSCRAP_URL', process.env.REACT_APP_WEBSCRAP_URL)
     console.log('REACT_APP_API_URL', process.env.REACT_APP_API_URL)
@@ -24,7 +24,7 @@ function App() {
         <Loading />
       ) : (
         <>
-          {addMenuVisbile && <AddMenu setList={setList} setAddMenuVisible={setAddMenuVisible} />}
+          {addMenuVisible && <AddMenu setList={setList} setAddMenuVisible={setAddMenuVisible} />}
           <MenuList list={list} setList={setList} setAddMenuVisible={setAddMenuVisible} />
         </>
       )}

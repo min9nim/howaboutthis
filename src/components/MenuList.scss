@@ -16,12 +16,14 @@
     li {
       .wrapper {
         margin-bottom: 0;
-        cursor: pointer;
         //&:hover{
         //  background-color: #eee;
         //}
         h4 {
           margin-bottom: 5px;
+        }
+        .title {
+          cursor: pointer;
         }
 
         .content {
@@ -32,16 +34,19 @@
             flex: 1;
             .url {
               color: darkolivegreen;
+              cursor: pointer;
             }
             .description {
               margin-top: 10px;
               color: gray;
+              cursor: pointer;
             }
             button {
               margin: 20px 2px;
             }
           }
           .image {
+            cursor: pointer;
             img {
               width: 200px;
             }

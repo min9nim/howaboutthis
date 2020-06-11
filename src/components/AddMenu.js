@@ -3,7 +3,7 @@ import req, { webscrap } from '../utils/req'
 import { append, prop } from 'ramda'
 import './AddMenu.scss'
 
-export default function AddMenu({ setList, setAddMenuVisible }) {
+export default function AddMenu({ setList, setAddMenuVisible, setAniLoading }) {
   const [url, setUrl] = useState('')
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('')
@@ -17,6 +17,7 @@ export default function AddMenu({ setList, setAddMenuVisible }) {
   }
 
   const addMenu = async () => {
+    setAniLoading(true)
     let result
     if (!url) {
       const text = await navigator.clipboard.readText()
@@ -36,6 +37,7 @@ export default function AddMenu({ setList, setAddMenuVisible }) {
     setDesc('')
     setImage('')
     setAddMenuVisible(false)
+    setAniLoading(false)
   }
 
   return (

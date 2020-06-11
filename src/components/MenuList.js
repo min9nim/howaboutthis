@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { getHostname } from 'mingutils'
-import { propEq, complement } from 'ramda'
+import { propEq, complement, prop, append } from 'ramda'
 import './MenuList.scss'
-import req, { messageToSlack } from '../utils/req'
+import req, { messageToSlack, webscrap } from '../utils/req'
 import { stop, loading } from '../utils'
 
 const toSlack = async _id => {
@@ -27,6 +27,19 @@ export default function MenuList({ list, setList, setAddMenuVisible, setAniLoadi
     setAniLoading(false)
   }
 
+  const addMenu = async () => {
+    const text = await navigator.clipboard.readText()
+    if (text?.indexOf('http') === 0) {
+      setAniLoading(true)
+      const info = await webscrap(text)
+      const result = await req('add-menu', info).then(prop('result'))
+      setList(append(result))
+      setAniLoading(false)
+      return
+    }
+    setAddMenuVisible(true)
+  }
+
   return (
     <div className="menuList">
       <header>
@@ -34,7 +47,7 @@ export default function MenuList({ list, setList, setAddMenuVisible, setAniLoadi
           <h2>강남역 식당 🍚🍱🍣</h2>
         </div>
         <div className="menu">
-          <button onClick={() => setAddMenuVisible(true)}>식당추가</button>
+          <button onClick={addMenu}>식당추가</button>
           <button onClick={() => toSlack()}>랜덤추천 to {window.$SLACK_CHANNEL}</button>
         </div>
       </header>

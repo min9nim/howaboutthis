@@ -17,20 +17,12 @@ export default function AddMenu({ setList, setAddMenuVisible, setAniLoading }) {
   }
 
   const addMenu = async () => {
-    setAniLoading(true)
-    let result
     if (!url) {
-      const text = await navigator.clipboard.readText()
-      if (text.indexOf('http') === 0) {
-        const info = await webscrap(text)
-        result = await req('add-menu', info).then(prop('result'))
-      } else {
-        alert('url 을 입력해 주세요')
-        return
-      }
-    } else {
-      result = await req('add-menu', { title, url, desc, image }).then(prop('result'))
+      alert('url 을 입력해 주세요')
+      return
     }
+    setAniLoading(true)
+    const result = await req('add-menu', { title, url, desc, image }).then(prop('result'))
     setList(append(result))
     setUrl('')
     setTitle('')

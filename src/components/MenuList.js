@@ -1,18 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import { getHostname } from 'mingutils'
+import React from 'react'
 import { propEq, complement, prop, append } from 'ramda'
 import Menu from './Menu'
 import './MenuList.scss'
-import req, { messageToSlack, webscrap } from '../utils/req'
-import { stop, loading } from '../utils'
+import req, { webscrap } from '../utils/req'
+import { loading } from '../utils'
 
 const toSlack = async _id => {
   loading(true)
-  if (_id) {
-    await req('menu-to-slack?_id=' + _id)
-  } else {
-    await req('menu-to-slack')
-  }
+  await req('menu-to-slack', { _id, channel: window.$SLACK_CHANNEL })
   loading(false)
 }
 

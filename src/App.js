@@ -6,8 +6,8 @@ import './App.scss'
 import Loading from './components/Loading'
 
 function App() {
-  const [list, setList] = useState(null)
-  const [loading, setLoading] = useState(false)
+  const [list, setList] = useState([])
+  const [aniLoading, setAniLoading] = useState(false)
   const [addMenuVisbile, setAddMenuVisible] = useState(false)
   useEffect(() => {
     console.log('REACT_APP_WEBSCRAP_URL', process.env.REACT_APP_WEBSCRAP_URL)
@@ -15,12 +15,12 @@ function App() {
     console.log('REACT_APP_SLACK_URL', process.env.REACT_APP_SLACK_URL)
     console.log('REACT_APP_SLACK_CHANNEL', process.env.REACT_APP_SLACK_CHANNEL)
 
-    init({ setList })
+    init({ setList, setAniLoading })
   }, [])
 
   return (
     <div className="App">
-      {!list ? (
+      {aniLoading ? (
         <Loading />
       ) : (
         <>

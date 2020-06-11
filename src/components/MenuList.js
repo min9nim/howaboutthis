@@ -49,8 +49,12 @@ export default function MenuList({ list, setList, setAddMenuVisible, setAniLoadi
           <h2>강남역 식당 🍚🍱🍣</h2>
         </div>
         <div className="menu">
-          <button onClick={addMenu}>식당추가</button>
-          <button onClick={() => toSlack()}>랜덤추천 to {window.$SLACK_CHANNEL}</button>
+          <button className="add" onClick={addMenu}>
+            식당추가➕
+          </button>
+          <button className="random" onClick={() => toSlack()}>
+            랜덤추천👍 to {window.$SLACK_CHANNEL}
+          </button>
         </div>
       </header>
       <ul>
@@ -83,9 +87,9 @@ export default function MenuList({ list, setList, setAddMenuVisible, setAniLoadi
                   >
                     {desc}
                   </div>
-                  <div>
-                    <button onClick={stop(() => deleteMenu(_id))}>삭제</button>
-                    <button onClick={stop(() => toSlack(_id))}>추천 to {window.$SLACK_CHANNEL}</button>
+                  <div className="btnGroup">
+                    <button onClick={stop(() => deleteMenu(_id))}>🗑️ 삭제</button>
+                    <button onClick={stop(() => toSlack(_id))}>👍 추천 to {window.$SLACK_CHANNEL}</button>
                   </div>
                 </div>
                 <div

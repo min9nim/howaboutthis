@@ -41,8 +41,11 @@
               color: gray;
               cursor: pointer;
             }
-            button {
-              margin: 20px 2px;
+            .btnGroup {
+              padding-top: 10px;
+              button {
+                margin: 2px;
+              }
             }
           }
           .image {

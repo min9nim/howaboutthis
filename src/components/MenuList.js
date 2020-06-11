@@ -67,7 +67,7 @@ export default function MenuList({ list, setList, setAddMenuVisible, setAniLoadi
                   <div className="description">{desc}</div>
                   <div>
                     <button onClick={stop(() => deleteMenu(_id))}>삭제</button>
-                    <button onClick={stop(() => toSlack(_id))}>슬랙전송</button>
+                    <button onClick={stop(() => toSlack(_id))}>추천 to {window.$SLACK_CHANNEL}</button>
                   </div>
                 </div>
                 <div className="image">

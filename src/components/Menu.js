@@ -46,6 +46,7 @@ export default function Menu({ _id, title, url, image, desc, deleteMenu, toSlack
           <img src={image} alt={title} />
         </div>
       </div>
+      <hr color="#f0f0f0" />
     </div>
   )
 }

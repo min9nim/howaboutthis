@@ -8,6 +8,7 @@ export const init = async ({ setList, setAniLoading }) => {
     req('get-menus').then(prop('result')),
   ])
   setAniLoading(false)
-  window.$SLACK_CHANNEL = setting.SLACK_CHANNEL
+
+  window.$SLACK_CHANNEL = process.env.REACT_APP_SLACK_CHANNEL || setting.SLACK_CHANNEL
   setList(list)
 }

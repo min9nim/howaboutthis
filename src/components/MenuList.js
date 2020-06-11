@@ -29,7 +29,7 @@ export default function MenuList({ list, setList, setAddMenuVisible }) {
     <div className="menuList">
       <header>
         <div>
-          <h2>강남역 식당</h2>
+          <h2>강남역 식당 🍚🍱🍣</h2>
         </div>
         <div className="menu">
           <button onClick={() => setAddMenuVisible(true)}>식당추가</button>

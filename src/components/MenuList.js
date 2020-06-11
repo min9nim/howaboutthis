@@ -32,10 +32,12 @@ export default function MenuList({ list, setList, setAddMenuVisible, setAniLoadi
     if (text?.indexOf('http') === 0) {
       setAniLoading(true)
       const info = await webscrap(text)
-      const result = await req('add-menu', info).then(prop('result'))
-      setList(append(result))
-      setAniLoading(false)
-      return
+      if (info.title) {
+        const result = await req('add-menu', info).then(prop('result'))
+        setList(append(result))
+        setAniLoading(false)
+        return
+      }
     }
     setAddMenuVisible(true)
   }

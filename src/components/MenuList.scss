@@ -13,49 +13,5 @@
   ul {
     list-style-type: none;
     padding-left: 0;
-    li {
-      .wrapper {
-        margin-bottom: 0;
-        //&:hover{
-        //  background-color: #eee;
-        //}
-        h4 {
-          margin-bottom: 5px;
-        }
-        .title {
-          cursor: pointer;
-        }
-
-        .content {
-          display: flex;
-
-          .desc {
-            margin-right: 20px;
-            flex: 1;
-            .url {
-              color: darkolivegreen;
-              cursor: pointer;
-            }
-            .description {
-              margin-top: 10px;
-              color: gray;
-              cursor: pointer;
-            }
-            .btnGroup {
-              padding-top: 10px;
-              button {
-                margin: 2px;
-              }
-            }
-          }
-          .image {
-            cursor: pointer;
-            img {
-              width: 200px;
-            }
-          }
-        }
-      }
-    }
   }
 }

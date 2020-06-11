@@ -17,11 +17,16 @@
       .wrapper {
         margin-bottom: 0;
         cursor: pointer;
+        //&:hover{
+        //  background-color: #eee;
+        //}
         h4 {
           margin-bottom: 5px;
         }
+
         .content {
           display: flex;
+
           .desc {
             margin-right: 20px;
             flex: 1;

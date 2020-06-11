@@ -4,7 +4,6 @@ import { propEq, complement } from 'ramda'
 import './MenuList.scss'
 import req, { messageToSlack } from '../utils/req'
 import { stop, loading } from '../utils'
-import Loading from './Loading'
 
 const toSlack = async _id => {
   loading(true)
@@ -38,35 +37,31 @@ export default function MenuList({ list, setList, setAddMenuVisible }) {
         </div>
       </header>
       <ul>
-        {!list ? (
-          <Loading />
-        ) : (
-          list.map(({ _id, title, url, image, desc }) => (
-            <li key={_id}>
-              <div className="wrapper">
-                <h4>{title}</h4>
-                <div
-                  className="content"
-                  onClick={() => {
-                    window.open(url, '_blank')
-                  }}
-                >
-                  <div className="desc">
-                    <div className="url">{getHostname(url)}</div>
-                    <div className="description">{desc}</div>
-                    <div>
-                      <button onClick={stop(() => deleteMenu(_id))}>삭제</button>
-                      <button onClick={stop(() => toSlack(_id))}>슬랙전송</button>
-                    </div>
-                  </div>
-                  <div className="image">
-                    <img src={image} alt={title} />
+        {list.map(({ _id, title, url, image, desc }) => (
+          <li key={_id}>
+            <div className="wrapper">
+              <h4>{title}</h4>
+              <div
+                className="content"
+                onClick={() => {
+                  window.open(url, '_blank')
+                }}
+              >
+                <div className="desc">
+                  <div className="url">{getHostname(url)}</div>
+                  <div className="description">{desc}</div>
+                  <div>
+                    <button onClick={stop(() => deleteMenu(_id))}>삭제</button>
+                    <button onClick={stop(() => toSlack(_id))}>슬랙전송</button>
                   </div>
                 </div>
+                <div className="image">
+                  <img src={image} alt={title} />
+                </div>
               </div>
-            </li>
-          ))
-        )}
+            </div>
+          </li>
+        ))}
       </ul>
     </div>
   )

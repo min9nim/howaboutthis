@@ -39,33 +39,36 @@ export default function AddMenu({ setList, setAddMenuVisible }) {
   }
 
   return (
-    <div className="MenuInfo">
-      <h2>식당 추가</h2>
-      <div className="wrapper">
-        <div className="input">
-          <div className="item">
-            <label>URL: </label>
-            <input value={url} onChange={e => setUrl(e.target.value)} onBlur={urlOnBlur} />
+    <>
+      <div className="MenuInfo">
+        <h2>식당 추가</h2>
+        <div className="wrapper">
+          <div className="input">
+            <div className="item">
+              <label>URL: </label>
+              <input value={url} onChange={e => setUrl(e.target.value)} onBlur={urlOnBlur} />
+            </div>
+            <div className="item">
+              <label>식당이름: </label>
+              <input value={title} onChange={e => setTitle(e.target.value)} />
+            </div>
+            <div className="item">
+              <label>설명: </label>
+              <input value={desc} onChange={e => setDesc(e.target.value)} />
+            </div>
+            <div className="item">
+              <label>이미지: </label>
+              <input value={image} onChange={e => setImage(e.target.value)} />
+            </div>
           </div>
-          <div className="item">
-            <label>식당이름: </label>
-            <input value={title} onChange={e => setTitle(e.target.value)} />
-          </div>
-          <div className="item">
-            <label>설명: </label>
-            <input value={desc} onChange={e => setDesc(e.target.value)} />
-          </div>
-          <div className="item">
-            <label>이미지: </label>
-            <input value={image} onChange={e => setImage(e.target.value)} />
-          </div>
+          <div className="image">{image && <img src={image} alt="식당이미지" />}</div>
         </div>
-        <div className="image">{image && <img src={image} alt="식당이미지" />}</div>
+        <div className="btnGroup">
+          <button onClick={addMenu}>저장</button>
+          <button onClick={() => setAddMenuVisible(false)}>취소</button>
+        </div>
       </div>
-      <div className="btnGroup">
-        <button onClick={addMenu}>저장</button>
-        <button onClick={() => setAddMenuVisible(false)}>취소</button>
-      </div>
-    </div>
+      <hr />
+    </>
   )
 }

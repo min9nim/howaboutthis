@@ -6,6 +6,6 @@ yarn start
 
 <br>
 
-### 매일 11:50 슬랙으로 추천 메세지 전송
-- job 등록: https://cron-job.org/en/members/
+### 매일 슬랙으로 추천 메세지 전송
 - 시간: 매일 오전 11:30
+- job 등록: https://cron-job.org/en/members/

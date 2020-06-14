@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import req, { webscrap } from '../utils/req'
-import { append, prop } from 'ramda'
+import { prepend, prop } from 'ramda'
 import './AddMenu.scss'
 
 export default function AddMenu({ setList, setAddMenuVisible, setAniLoading }) {
@@ -23,7 +23,7 @@ export default function AddMenu({ setList, setAddMenuVisible, setAniLoading }) {
     }
     setAniLoading(true)
     const result = await req('add-menu', { title, url, desc, image }).then(prop('result'))
-    setList(append(result))
+    setList(prepend(result))
     setUrl('')
     setTitle('')
     setDesc('')

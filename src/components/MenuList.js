@@ -1,5 +1,5 @@
 import React from 'react'
-import { propEq, complement, prop, append } from 'ramda'
+import { propEq, complement, prop, prepend } from 'ramda'
 import Menu from './Menu'
 import './MenuList.scss'
 import req, { webscrap } from '../utils/req'
@@ -30,7 +30,7 @@ export default function MenuList({ list, setList, setAddMenuVisible, setAniLoadi
       const info = await webscrap(text)
       if (info.title) {
         const result = await req('add-menu', info).then(prop('result'))
-        setList(append(result))
+        setList(prepend(result))
         setAniLoading(false)
         return
       }

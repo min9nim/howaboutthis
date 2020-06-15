@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import req, { webscrap } from '../utils/req'
 import { complement, filter, pipe, prepend, prop, propEq } from 'ramda'
 import './AddMenu.scss'
 
 export default function AddMenu({ setList, setAddMenuVisible, menu }) {
   const [url, setUrl] = useState('')
+  const inputUrl = useRef(null)
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('')
   const [image, setImage] = useState('')
@@ -25,6 +26,7 @@ export default function AddMenu({ setList, setAddMenuVisible, menu }) {
     }
     if (!url.startsWith('http')) {
       alert('입력하신 url 정보를 확인하세요')
+      // inputUrl.current.focus()
       return
     }
     setLoadingMsg('loading..')
@@ -38,6 +40,7 @@ export default function AddMenu({ setList, setAddMenuVisible, menu }) {
   const addMenu = async () => {
     if (!url) {
       alert('url 을 입력해 주세요')
+      inputUrl.current.focus()
       return
     }
     // setAniLoading(true)
@@ -54,6 +57,7 @@ export default function AddMenu({ setList, setAddMenuVisible, menu }) {
   const updateMenu = async () => {
     if (!url) {
       alert('url 을 입력해 주세요')
+      inputUrl.current.focus()
       return
     }
     // setAniLoading(true)
@@ -75,7 +79,7 @@ export default function AddMenu({ setList, setAddMenuVisible, menu }) {
           <div className="input">
             <div className="item">
               <label>URL: </label>
-              <input value={url} onChange={e => setUrl(e.target.value)} onBlur={urlOnBlur} />
+              <input value={url} onChange={e => setUrl(e.target.value)} onBlur={urlOnBlur} ref={inputUrl} />
             </div>
             <div className="item">
               <label>식당이름: </label>

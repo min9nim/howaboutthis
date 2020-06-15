@@ -37,14 +37,16 @@ export default function Menu({ _id, title, url, image, desc, deleteMenu, toSlack
             <button onClick={stop(() => toSlack(_id))}>👍 추천 to {window.$SLACK_CHANNEL}</button>
           </div>
         </div>
-        <div
-          className="image"
-          onClick={() => {
-            window.open(url, '_blank')
-          }}
-        >
-          <img src={image} alt={title} />
-        </div>
+        {image && (
+          <div
+            className="image"
+            onClick={() => {
+              window.open(url, '_blank')
+            }}
+          >
+            <img src={image} alt={title} />
+          </div>
+        )}
       </div>
       <hr color="#f0f0f0" />
     </div>

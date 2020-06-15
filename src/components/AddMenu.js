@@ -1,14 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import req, { webscrap } from '../utils/req'
-import { prepend, prop } from 'ramda'
+import { complement, filter, pipe, prepend, prop, propEq } from 'ramda'
 import './AddMenu.scss'
 
-export default function AddMenu({ setList, setAddMenuVisible, setAniLoading }) {
+export default function AddMenu({ setList, setAddMenuVisible, menu }) {
   const [url, setUrl] = useState('')
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('')
   const [image, setImage] = useState('')
   const [loadingMsg, setLoadingMsg] = useState('')
+
+  useEffect(() => {
+    if (!menu._id) {
+      return
+    }
+    setUrl(menu.url)
+    setTitle(menu.title)
+    setDesc(menu.desc)
+    setImage(menu.image)
+  }, [])
 
   const urlOnBlur = async () => {
     setLoadingMsg('loading..')
@@ -27,6 +37,22 @@ export default function AddMenu({ setList, setAddMenuVisible, setAniLoading }) {
     // setAniLoading(true)
     const result = await req('add-menu', { title, url, desc, image }).then(prop('result'))
     setList(prepend(result))
+    setUrl('')
+    setTitle('')
+    setDesc('')
+    setImage('')
+    setAddMenuVisible(false)
+    // setAniLoading(false)
+  }
+
+  const updateMenu = async () => {
+    if (!url) {
+      alert('url 을 입력해 주세요')
+      return
+    }
+    // setAniLoading(true)
+    const result = await req('update-menu', { _id: menu._id, title, url, desc, image }).then(prop('result'))
+    setList(pipe(complement(filter(propEq('_id', menu._id))), prepend(result)))
     setUrl('')
     setTitle('')
     setDesc('')
@@ -61,7 +87,7 @@ export default function AddMenu({ setList, setAddMenuVisible, setAniLoading }) {
           <div className="image">{image && <img src={image} alt="식당이미지" />}</div>
         </div>
         <div className="btnGroup">
-          <button onClick={addMenu}>저장</button>
+          <button onClick={menu._id ? updateMenu : addMenu}>저장</button>
           <button onClick={() => setAddMenuVisible(false)}>취소</button>
         </div>
       </div>

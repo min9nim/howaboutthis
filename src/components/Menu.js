@@ -3,7 +3,7 @@ import { getHostname } from 'mingutils'
 import { stop } from '../utils'
 import './Menu.scss'
 
-export default function Menu({ _id, title, url, image, desc, deleteMenu, toSlack }) {
+export default function Menu({ _id, title, url, image, desc, deleteMenu, toSlack, setSelected }) {
   return (
     <div className="wrapper">
       <h4
@@ -34,6 +34,7 @@ export default function Menu({ _id, title, url, image, desc, deleteMenu, toSlack
           </div>
           <div className="btnGroup">
             <button onClick={stop(() => deleteMenu(_id))}>🗑️ 삭제</button>
+            <button onClick={() => setSelected({ _id, title, url, image, desc })}>📝 수정</button>
             <button onClick={stop(() => toSlack(_id))}>👍 추천 to {window.$SLACK_CHANNEL}</button>
           </div>
         </div>

@@ -11,7 +11,7 @@ const toSlack = async _id => {
   loading(false)
 }
 
-export default function MenuList({ list, setList, setAddMenuVisible, setAniLoading }) {
+export default function MenuList({ list, setList, setAddMenuVisible, setSelected }) {
   const deleteMenu = async _id => {
     if (!window.confirm('삭제합니다')) {
       return
@@ -56,7 +56,7 @@ export default function MenuList({ list, setList, setAddMenuVisible, setAniLoadi
       <ul>
         {list.map(menu => (
           <li key={menu._id}>
-            <Menu {...menu} deleteMenu={deleteMenu} toSlack={toSlack} />
+            <Menu {...menu} deleteMenu={deleteMenu} toSlack={toSlack} setSelected={setSelected} />
           </li>
         ))}
       </ul>

@@ -7,6 +7,7 @@ import Loading from './components/Loading'
 
 function App() {
   const [list, setList] = useState([])
+  const [selected, setSelected] = useState(null)
   const [aniLoading, setAniLoading] = useState(false)
   const [addMenuVisible, setAddMenuVisible] = useState(false)
   useEffect(() => {
@@ -17,9 +18,24 @@ function App() {
     <div className="App">
       {aniLoading && <Loading />}
       {addMenuVisible && (
-        <AddMenu setList={setList} setAddMenuVisible={setAddMenuVisible} setAniLoading={setAniLoading} />
+        <AddMenu
+          setList={setList}
+          setAddMenuVisible={setAddMenuVisible}
+          setAniLoading={setAniLoading}
+          menu={selected}
+        />
       )}
-      <MenuList list={list} setList={setList} setAddMenuVisible={setAddMenuVisible} setAniLoading={setAniLoading} />
+      <MenuList
+        list={list}
+        setList={setList}
+        setAddMenuVisible={setAddMenuVisible}
+        setAniLoading={setAniLoading}
+        setSelected={menu => {
+          setAddMenuVisible(true)
+          setSelected(menu)
+          window.scrollTo(0, 0)
+        }}
+      />
     </div>
   )
 }

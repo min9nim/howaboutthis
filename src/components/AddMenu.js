@@ -8,9 +8,12 @@ export default function AddMenu({ setList, setAddMenuVisible, setAniLoading }) {
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('')
   const [image, setImage] = useState('')
+  const [loadingMsg, setLoadingMsg] = useState('')
 
   const urlOnBlur = async () => {
+    setLoadingMsg('loading..')
     const { title, desc, image } = await webscrap(url)
+    setLoadingMsg('')
     setTitle(title)
     setDesc(desc)
     setImage(image)
@@ -44,15 +47,15 @@ export default function AddMenu({ setList, setAddMenuVisible, setAniLoading }) {
             </div>
             <div className="item">
               <label>식당이름: </label>
-              <input value={title} onChange={e => setTitle(e.target.value)} />
+              <input value={title} onChange={e => setTitle(e.target.value)} placeholder={loadingMsg} />
             </div>
             <div className="item">
               <label>설명: </label>
-              <input value={desc} onChange={e => setDesc(e.target.value)} />
+              <input value={desc} onChange={e => setDesc(e.target.value)} placeholder={loadingMsg} />
             </div>
             <div className="item">
               <label>이미지: </label>
-              <input value={image} onChange={e => setImage(e.target.value)} />
+              <input value={image} onChange={e => setImage(e.target.value)} placeholder={loadingMsg} />
             </div>
           </div>
           <div className="image">{image && <img src={image} alt="식당이미지" />}</div>

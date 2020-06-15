@@ -11,16 +11,18 @@ export default function AddMenu({ setList, setAddMenuVisible, menu }) {
   const [loadingMsg, setLoadingMsg] = useState('')
 
   useEffect(() => {
-    if (!menu._id) {
-      return
+    if (menu._id) {
+      setUrl(menu.url)
+      setTitle(menu.title)
+      setDesc(menu.desc)
+      setImage(menu.image)
     }
-    setUrl(menu.url)
-    setTitle(menu.title)
-    setDesc(menu.desc)
-    setImage(menu.image)
   }, [])
 
   const urlOnBlur = async () => {
+    if (menu._id) {
+      return
+    }
     setLoadingMsg('loading..')
     const { title, desc, image } = await webscrap(url)
     setLoadingMsg('')

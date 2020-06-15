@@ -17,7 +17,7 @@ export default function AddMenu({ setList, setAddMenuVisible, menu }) {
       setDesc(menu.desc)
       setImage(menu.image)
     }
-  }, [])
+  })
 
   const urlOnBlur = async () => {
     if (menu._id) {

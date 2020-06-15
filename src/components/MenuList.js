@@ -24,6 +24,7 @@ export default function MenuList({ list, setList, setAddMenuVisible, setSelected
   }
 
   const addMenu = async () => {
+    setSelected(null)
     const text = await navigator.clipboard.readText()
     if (text?.indexOf('http') === 0) {
       // setAniLoading(true)

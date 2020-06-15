@@ -11,7 +11,7 @@ export default function AddMenu({ setList, setAddMenuVisible, menu }) {
   const [loadingMsg, setLoadingMsg] = useState('')
 
   useEffect(() => {
-    if (menu._id) {
+    if (menu?._id) {
       setUrl(menu.url)
       setTitle(menu.title)
       setDesc(menu.desc)
@@ -20,7 +20,7 @@ export default function AddMenu({ setList, setAddMenuVisible, menu }) {
   })
 
   const urlOnBlur = async () => {
-    if (menu._id) {
+    if (menu?._id) {
       return
     }
     setLoadingMsg('loading..')
@@ -89,7 +89,7 @@ export default function AddMenu({ setList, setAddMenuVisible, menu }) {
           <div className="image">{image && <img src={image} alt="식당이미지" />}</div>
         </div>
         <div className="btnGroup">
-          <button onClick={menu._id ? updateMenu : addMenu}>저장</button>
+          <button onClick={menu?._id ? updateMenu : addMenu}>저장</button>
           <button onClick={() => setAddMenuVisible(false)}>취소</button>
         </div>
       </div>

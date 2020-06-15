@@ -17,21 +17,21 @@ export default function MenuList({ list, setList, setAddMenuVisible, setAniLoadi
       return
     }
 
-    setAniLoading(true)
+    // setAniLoading(true)
     await req('delete-menu', { _id })
     setList(list => list.filter(complement(propEq('_id', _id))))
-    setAniLoading(false)
+    // setAniLoading(false)
   }
 
   const addMenu = async () => {
     const text = await navigator.clipboard.readText()
     if (text?.indexOf('http') === 0) {
-      setAniLoading(true)
+      // setAniLoading(true)
       const info = await webscrap(text)
       if (info.title) {
         const result = await req('add-menu', info).then(prop('result'))
         setList(prepend(result))
-        setAniLoading(false)
+        // setAniLoading(false)
         return
       }
     }

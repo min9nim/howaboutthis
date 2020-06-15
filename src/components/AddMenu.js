@@ -21,7 +21,7 @@ export default function AddMenu({ setList, setAddMenuVisible, setAniLoading }) {
       alert('url 을 입력해 주세요')
       return
     }
-    setAniLoading(true)
+    // setAniLoading(true)
     const result = await req('add-menu', { title, url, desc, image }).then(prop('result'))
     setList(prepend(result))
     setUrl('')
@@ -29,7 +29,7 @@ export default function AddMenu({ setList, setAddMenuVisible, setAniLoading }) {
     setDesc('')
     setImage('')
     setAddMenuVisible(false)
-    setAniLoading(false)
+    // setAniLoading(false)
   }
 
   return (

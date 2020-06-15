@@ -1,6 +1,17 @@
 let $loading
-export function initLoading(loading) {
-  $loading = loading
+export function initLoading(setAniLoading) {
+  let $reqCnt = 0
+  $loading = loading => {
+    if (loading) {
+      $reqCnt++
+      setAniLoading(true)
+      return
+    }
+    $reqCnt--
+    if ($reqCnt === 0) {
+      setAniLoading(false)
+    }
+  }
 }
 
 export async function http(url, data, option) {
@@ -23,6 +34,7 @@ export async function http(url, data, option) {
       window.$logger.warn('res is not ok')
     }
     $loading(false)
+
     return res.json()
   } catch (e) {
     $loading(false)

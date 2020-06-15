@@ -23,7 +23,7 @@ export async function http(url, data, option) {
       window.$logger.warn('res is not ok')
     }
     $loading(false)
-    return res
+    return res.json()
   } catch (e) {
     $loading(false)
     alert(e.message)
@@ -34,10 +34,10 @@ export async function http(url, data, option) {
 export default function req(path, data) {
   return http(process.env.REACT_APP_API_URL + '/api/' + path, data, {
     mode: 'cors', // no-cors, cors, *same-origin
-  }).then(res => res.json())
+  })
 }
 
 export function webscrap(url) {
   console.log('process.env.REACT_APP_WEBSCRAP_URL', process.env.REACT_APP_WEBSCRAP_URL)
-  return http(process.env.REACT_APP_WEBSCRAP_URL, { url }).then(res => res.json())
+  return http(process.env.REACT_APP_WEBSCRAP_URL, { url })
 }

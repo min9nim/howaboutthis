@@ -23,6 +23,10 @@ export default function AddMenu({ setList, setAddMenuVisible, menu }) {
     if (menu?._id) {
       return
     }
+    if (!url.startsWith('http')) {
+      alert('입력하신 url 정보를 확인하세요')
+      return
+    }
     setLoadingMsg('loading..')
     const { title, desc, image } = await webscrap(url)
     setLoadingMsg('')

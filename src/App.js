@@ -31,9 +31,11 @@ function App() {
         setAddMenuVisible={setAddMenuVisible}
         setAniLoading={setAniLoading}
         setSelected={menu => {
-          setAddMenuVisible(true)
           setSelected(menu)
-          window.scrollTo(0, 0)
+          if (menu) {
+            setAddMenuVisible(true)
+            window.scrollTo(0, 0)
+          }
         }}
       />
     </div>

@@ -2,6 +2,7 @@ import React from 'react'
 import { getHostname } from 'mingutils'
 import { stop } from '../utils'
 import './Menu.scss'
+import CommentForm from './CommentForm'
 
 export default function Menu({ _id, title, url, image, desc, deleteMenu, toSlack, setSelected }) {
   return (
@@ -49,6 +50,7 @@ export default function Menu({ _id, title, url, image, desc, deleteMenu, toSlack
           </div>
         )}
       </div>
+      <CommentForm />
       <hr color="#f0f0f0" />
     </div>
   )

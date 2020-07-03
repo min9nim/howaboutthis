@@ -1,6 +1,7 @@
 section.comment-form {
   display: flex;
   padding: 5px 0;
+  justify-content: space-between;
   input {
     width: 80px;
     height: 20px;
@@ -10,5 +11,7 @@ section.comment-form {
   textarea {
     height: 18px;
     border: 1px solid #aaa;
+    flex: 1;
+    margin-right: 5px;
   }
 }

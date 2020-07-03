@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import req, { webscrap } from '../utils/req'
-import { complement, filter, pipe, prepend, prop, propEq } from 'ramda'
+import { assoc, complement, filter, pipe, prepend, prop, propEq } from 'ramda'
 import './AddMenu.scss'
 
 export default function AddMenu({ setList, setAddMenuVisible, menu }) {
@@ -44,7 +44,9 @@ export default function AddMenu({ setList, setAddMenuVisible, menu }) {
       return
     }
     // setAniLoading(true)
-    const result = await req('add-menu', { title, url, desc, image }).then(prop('result'))
+    const result = await req('add-menu', { title, url, desc, image })
+      .then(prop('result'))
+      .then(assoc('comments', []))
     setList(prepend(result))
     setUrl('')
     setTitle('')
@@ -61,7 +63,13 @@ export default function AddMenu({ setList, setAddMenuVisible, menu }) {
       return
     }
     // setAniLoading(true)
-    const result = await req('update-menu', { _id: menu._id, title, url, desc, image }).then(prop('result'))
+    const result = await req('update-menu', {
+      _id: menu._id,
+      title,
+      url,
+      desc,
+      image,
+    }).then(prop('result'))
     setList(pipe(complement(filter(propEq('_id', menu._id))), prepend(result)))
     setUrl('')
     setTitle('')
@@ -79,22 +87,41 @@ export default function AddMenu({ setList, setAddMenuVisible, menu }) {
           <div className="input">
             <div className="item">
               <label>URL: </label>
-              <input value={url} onChange={e => setUrl(e.target.value)} onBlur={urlOnBlur} ref={inputUrl} />
+              <input
+                value={url}
+                onChange={e => setUrl(e.target.value)}
+                onBlur={urlOnBlur}
+                ref={inputUrl}
+              />
             </div>
             <div className="item">
               <label>식당이름: </label>
-              <input value={title} onChange={e => setTitle(e.target.value)} placeholder={loadingMsg} />
+              <input
+                value={title}
+                onChange={e => setTitle(e.target.value)}
+                placeholder={loadingMsg}
+              />
             </div>
             <div className="item">
               <label>설명: </label>
-              <input value={desc} onChange={e => setDesc(e.target.value)} placeholder={loadingMsg} />
+              <input
+                value={desc}
+                onChange={e => setDesc(e.target.value)}
+                placeholder={loadingMsg}
+              />
             </div>
             <div className="item">
               <label>이미지: </label>
-              <input value={image} onChange={e => setImage(e.target.value)} placeholder={loadingMsg} />
+              <input
+                value={image}
+                onChange={e => setImage(e.target.value)}
+                placeholder={loadingMsg}
+              />
             </div>
           </div>
-          <div className="image">{image && <img src={image} alt="식당이미지" />}</div>
+          <div className="image">
+            {image && <img src={image} alt="식당이미지" />}
+          </div>
         </div>
         <div className="btnGroup">
           <button onClick={menu?._id ? updateMenu : addMenu}>저장</button>

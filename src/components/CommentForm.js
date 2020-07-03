@@ -34,7 +34,7 @@ export default function CommentForm({ menuId, setCommentList }) {
         onChange={e => setContnt(e.target.value)}
         placeholder="맛집리뷰"
         value={content}
-      ></textarea>
+      />
       <button onClick={addComment}>저장</button>
     </section>
   )

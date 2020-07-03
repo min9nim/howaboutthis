@@ -2,6 +2,7 @@ import React from 'react'
 import './CommentItem.scss'
 import req from '../utils/req'
 import { complement, propEq } from 'ramda'
+import { nl2br } from 'mingutils/dist'
 
 export default function CommentItem({ item, setList }) {
   const { _id, author, content } = item
@@ -15,8 +16,11 @@ export default function CommentItem({ item, setList }) {
   }
   return (
     <li className="comment-item">
-      <div className="author">{author})</div>
-      <div className="content">{content}</div>
+      <div className="author">{author || '익명'})</div>
+      <div
+        className="content"
+        dangerouslySetInnerHTML={{ __html: nl2br(content) }}
+      />
       <div className="delete-btn" onClick={handleDelete}>
         x️
       </div>

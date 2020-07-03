@@ -46,7 +46,9 @@ export default function Menu({
             {desc}
           </div>
           <div className="btnGroup">
-            <button onClick={stop(() => deleteMenu(_id))}>🗑️ 삭제</button>
+            {comments.length === 0 && (
+              <button onClick={stop(() => deleteMenu(_id))}>🗑️ 삭제</button>
+            )}
             <button
               onClick={() => setSelected({ _id, title, url, image, desc })}
             >

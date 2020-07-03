@@ -1,5 +1,5 @@
 import React from 'react'
-import { propEq, complement, prop, prepend } from 'ramda'
+import { propEq, complement, prop, prepend, assoc } from 'ramda'
 import Menu from './Menu'
 import './MenuList.scss'
 import req, { webscrap } from '../utils/req'
@@ -11,7 +11,12 @@ const toSlack = async _id => {
   loading(false)
 }
 
-export default function MenuList({ list, setList, setAddMenuVisible, setSelected }) {
+export default function MenuList({
+  list,
+  setList,
+  setAddMenuVisible,
+  setSelected,
+}) {
   const deleteMenu = async _id => {
     if (!window.confirm('삭제합니다')) {
       return
@@ -30,7 +35,9 @@ export default function MenuList({ list, setList, setAddMenuVisible, setSelected
       // setAniLoading(true)
       const info = await webscrap(text)
       if (info.title) {
-        const result = await req('add-menu', info).then(prop('result'))
+        const result = await req('add-menu', info)
+          .then(prop('result'))
+          .then(assoc('comments', []))
         setList(prepend(result))
         // setAniLoading(false)
         return
@@ -57,7 +64,12 @@ export default function MenuList({ list, setList, setAddMenuVisible, setSelected
       <ul>
         {list.map(menu => (
           <li key={menu._id}>
-            <Menu {...menu} deleteMenu={deleteMenu} toSlack={toSlack} setSelected={setSelected} />
+            <Menu
+              {...menu}
+              deleteMenu={deleteMenu}
+              toSlack={toSlack}
+              setSelected={setSelected}
+            />
           </li>
         ))}
       </ul>

@@ -11,7 +11,7 @@ export default function CommentItem({ item, setList }) {
     if (!window.confirm('삭제합니다')) {
       return
     }
-    await req('delete-menu', { _id })
+    await req('delete-comment', { _id })
     setList(list => list.filter(complement(propEq('_id', _id))))
   }
   return (

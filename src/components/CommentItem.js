@@ -16,7 +16,9 @@ export default function CommentItem({ item, setList }) {
   }
   return (
     <li className="comment-item">
-      <div className="author">{author || '익명'})</div>
+      <div className="author">
+        <div>{author || '익명'})</div>
+      </div>
       <div
         className="content"
         dangerouslySetInnerHTML={{ __html: nl2br(content) }}

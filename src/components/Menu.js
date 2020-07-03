@@ -68,7 +68,7 @@ export default function Menu({
           </div>
         )}
       </div>
-      <CommentList list={commentList} />
+      <CommentList list={commentList} setList={setCommentList} />
       <CommentForm menuId={_id} setCommentList={setCommentList} />
       <hr color="#f0f0f0" />
     </div>

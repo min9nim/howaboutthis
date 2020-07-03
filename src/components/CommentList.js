@@ -4,12 +4,12 @@ import req from '../utils/req'
 import { prepend, prop } from 'ramda'
 import CommentItem from './CommentItem'
 
-export default function CommentList({ list }) {
+export default function CommentList({ list, setList }) {
   return (
     <ul>
       {list.map((item, idx) => {
         console.log(item)
-        return <CommentItem key={idx} item={item} />
+        return <CommentItem key={idx} item={item} setList={setList} />
       })}
     </ul>
   )

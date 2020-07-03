@@ -8,7 +8,6 @@ export default function CommentList({ list, setList }) {
   return (
     <ul>
       {list.map((item, idx) => {
-        console.log(item)
         return <CommentItem key={idx} item={item} setList={setList} />
       })}
     </ul>

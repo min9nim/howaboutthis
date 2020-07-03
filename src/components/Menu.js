@@ -16,7 +16,7 @@ export default function Menu({
   toSlack,
   setSelected,
 }) {
-  const [commentList, setCommentList] = useState([])
+  const [commentList, setCommentList] = useState(comments)
   return (
     <div className="wrapper">
       <h4

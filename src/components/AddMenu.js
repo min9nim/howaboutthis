@@ -18,7 +18,7 @@ export default function AddMenu({ setList, setAddMenuVisible, menu }) {
       setDesc(menu.desc)
       setImage(menu.image)
     }
-  })
+  }, [])
 
   const urlOnBlur = async () => {
     if (menu?._id) {
@@ -114,7 +114,10 @@ export default function AddMenu({ setList, setAddMenuVisible, menu }) {
               <label>이미지: </label>
               <input
                 value={image}
-                onChange={e => setImage(e.target.value)}
+                onChange={e => {
+                  console.log('image onChange', e.target.value)
+                  setImage(e.target.value)
+                }}
                 placeholder={loadingMsg}
               />
             </div>

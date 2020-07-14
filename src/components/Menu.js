@@ -46,7 +46,7 @@ export default function Menu({
             {desc}
           </div>
           <div className="btnGroup">
-            {comments.length === 0 && (
+            {comments?.length === 0 && (
               <button onClick={stop(() => deleteMenu(_id))}>🗑️ 삭제</button>
             )}
             <button

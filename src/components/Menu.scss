@@ -14,7 +14,6 @@
     display: flex;
 
     .desc {
-      margin-right: 20px;
       flex: 1;
       .url {
         color: darkolivegreen;
@@ -25,19 +24,20 @@
         margin-top: 10px;
         color: gray;
         cursor: pointer;
+        font-size: 14px;
+        img {
+          float: right;
+          max-width: 200px;
+          max-height: 200px;
+          margin: 0 0 5px 5px;
+          padding: 0 0 5px 5px;
+        }
       }
       .btnGroup {
         padding-top: 10px;
         button {
           margin: 2px;
         }
-      }
-    }
-    .image {
-      cursor: pointer;
-      img {
-        max-width: 200px;
-        max-height: 200px;
       }
     }
   }

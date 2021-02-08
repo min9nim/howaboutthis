@@ -43,6 +43,7 @@ export default function Menu({
               window.open(url, '_blank')
             }}
           >
+            {image && <img src={image} alt={title} />}
             {desc}
           </div>
           <div className="btnGroup">
@@ -59,16 +60,6 @@ export default function Menu({
             {/*</button>*/}
           </div>
         </div>
-        {image && (
-          <div
-            className="image"
-            onClick={() => {
-              window.open(url, '_blank')
-            }}
-          >
-            <img src={image} alt={title} />
-          </div>
-        )}
       </div>
       <CommentList list={commentList} setList={setCommentList} />
       <CommentForm menuId={_id} setCommentList={setCommentList} />

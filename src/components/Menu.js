@@ -54,9 +54,9 @@ export default function Menu({
             >
               📝 수정
             </button>
-            <button onClick={stop(() => toSlack(_id))}>
-              👍 추천 to {window.$SLACK_CHANNEL}
-            </button>
+            {/*<button onClick={stop(() => toSlack(_id))}>*/}
+            {/*  👍 추천 to {window.$SLACK_CHANNEL}*/}
+            {/*</button>*/}
           </div>
         </div>
         {image && (

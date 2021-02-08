@@ -56,9 +56,9 @@ export default function MenuList({
           <button className="add" onClick={addMenu}>
             식당추가➕
           </button>
-          <button className="random" onClick={() => toSlack()}>
-            랜덤추천👍 to {window.$SLACK_CHANNEL}
-          </button>
+          {/*<button className="random" onClick={() => toSlack()}>*/}
+          {/*  랜덤추천👍 to {window.$SLACK_CHANNEL}*/}
+          {/*</button>*/}
         </div>
       </header>
       <ul>

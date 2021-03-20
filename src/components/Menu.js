@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { getHostname } from 'mingutils'
 import { stop } from '../utils'
 import './Menu.scss'
@@ -17,6 +17,16 @@ export default function Menu({
   setSelected,
 }) {
   const [commentList, setCommentList] = useState(comments)
+  const imgRef = useRef()
+
+  useEffect(() => {
+    const loadImage = img => {
+      if (!img.src) {
+        img.src = image
+      }
+    }
+    observeDom(imgRef.current, loadImage)
+  }, [image])
   return (
     <div className="wrapper">
       <h4
@@ -43,7 +53,7 @@ export default function Menu({
               window.open(url, '_blank')
             }}
           >
-            {image && <img src={image} alt={title} />}
+            {image && <img ref={imgRef} alt={title} />}
             {desc}
           </div>
           <div className="btnGroup">
@@ -66,4 +76,20 @@ export default function Menu({
       <hr color="#f0f0f0" />
     </div>
   )
+}
+
+function observeDom(dom, callback) {
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) {
+        return
+      }
+      callback(entry.target)
+      observer.unobserve(entry.target)
+    })
+  })
+  observer.observe(dom)
+  return () => {
+    observer.unobserve(dom)
+  }
 }

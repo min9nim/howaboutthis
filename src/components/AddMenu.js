@@ -70,7 +70,7 @@ export default function AddMenu({ setList, setAddMenuVisible, menu }) {
       desc,
       image,
     }
-    req('update-menu', newData).then(prop('result'))
+    req('update-menu', newData, { loading: false }).then(prop('result'))
     setList(pipe(filter(complement(propEq('_id', menu._id))), prepend(newData)))
     setUrl('')
     setTitle('')

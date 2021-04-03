@@ -36,7 +36,9 @@ export async function request(url, data, option) {
 
 export async function http(url, data, option) {
   try {
-    $loading(true)
+    if (option.loading !== false) {
+      $loading(true)
+    }
     const result = await request(url, data, option).catch(e => {
       if (e.message === 'Failed to fetch') {
         return request(url, data, option)
@@ -48,13 +50,16 @@ export async function http(url, data, option) {
     alert(e.message)
     throw e
   } finally {
-    $loading(false)
+    if (option.loading !== false) {
+      $loading(false)
+    }
   }
 }
 
-export default function req(path, data) {
+export default function req(path, data, option) {
   return http(process.env.REACT_APP_API_URL + '/api/' + path, data, {
-    mode: 'cors', // no-cors, cors, *same-origin
+    mode: 'cors', // no-cors, cors, *same-origin,
+    ...option,
   })
 }
 

@@ -52,7 +52,7 @@ export default function MenuList({
     // window.$logger.debug('a',a)
     // window.$logger.debug('b',b)
     const diff =
-      new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime()
+      new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
     // window.$logger.debug('diff', diff)
     return diff
   }, list)

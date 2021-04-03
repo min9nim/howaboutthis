@@ -1,5 +1,5 @@
 import React from 'react'
-import { propEq, complement, prop, prepend, assoc } from 'ramda'
+import { propEq, complement, prop, prepend, assoc, sort } from 'ramda'
 import Menu from './Menu'
 import './MenuList.scss'
 import req, { webscrap } from '../utils/req'
@@ -46,6 +46,19 @@ export default function MenuList({
     setAddMenuVisible(true)
   }
 
+  console.log('list', list)
+
+  const sorted = sort((a, b) => {
+    // window.$logger.debug('a',a)
+    // window.$logger.debug('b',b)
+    const diff =
+      new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime()
+    // window.$logger.debug('diff', diff)
+    return diff
+  }, list)
+
+  console.log('sorted', sorted)
+
   return (
     <div className="menuList">
       <header>
@@ -62,7 +75,7 @@ export default function MenuList({
         </div>
       </header>
       <ul>
-        {list.map(menu => (
+        {sorted.map(menu => (
           <li key={menu._id}>
             <Menu
               {...menu}

@@ -56,21 +56,22 @@ export default function AddMenu({ setList, setAddMenuVisible, menu }) {
     // setAniLoading(false)
   }
 
-  const updateMenu = async () => {
+  const updateMenu = () => {
     if (!url) {
       alert('url 을 입력해 주세요')
       inputUrl.current.focus()
       return
     }
     // setAniLoading(true)
-    const result = await req('update-menu', {
+    const newData = {
       _id: menu._id,
       title,
       url,
       desc,
       image,
-    }).then(prop('result'))
-    setList(pipe(filter(complement(propEq('_id', menu._id))), prepend(result)))
+    }
+    req('update-menu', newData).then(prop('result'))
+    setList(pipe(filter(complement(propEq('_id', menu._id))), prepend(newData)))
     setUrl('')
     setTitle('')
     setDesc('')

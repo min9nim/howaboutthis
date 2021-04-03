@@ -1,6 +1,7 @@
 .MenuInfo {
   .wrapper {
     display: flex;
+    flex-direction: column;
     .image {
       img {
         width: 200px;

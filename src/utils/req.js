@@ -14,32 +14,41 @@ export function initLoading(setAniLoading) {
   }
 }
 
+export async function request(url, data, option) {
+  const res = await fetch(
+    url,
+    Object.assign(
+      {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      },
+      option,
+    ),
+  )
+  if (!res.ok) {
+    window.$logger.warn('res is not ok')
+  }
+  return res.json()
+}
+
 export async function http(url, data, option) {
   try {
     $loading(true)
-    const res = await fetch(
-      url,
-      Object.assign(
-        {
-          method: 'POST', // *GET, POST, PUT, DELETE, etc.
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        },
-        option,
-      ),
-    )
-    if (!res.ok) {
-      window.$logger.warn('res is not ok')
-    }
-    $loading(false)
-
-    return res.json()
+    const result = await request(url, data, option).catch(e => {
+      if (e.message === 'Failed to fetch') {
+        return request(url, data, option)
+      }
+      throw e
+    })
+    return result
   } catch (e) {
-    $loading(false)
     alert(e.message)
     throw e
+  } finally {
+    $loading(false)
   }
 }
 

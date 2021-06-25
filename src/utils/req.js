@@ -34,7 +34,7 @@ export async function request(url, data, option) {
   return res.json()
 }
 
-export async function http(url, data, option) {
+export async function http(url, data, option = {}) {
   try {
     if (option.loading !== false) {
       $loading(true)

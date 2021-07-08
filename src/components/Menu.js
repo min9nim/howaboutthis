@@ -25,7 +25,10 @@ export default function Menu({
         img.src = image
       }
     }
-    observeDom(imgRef.current, loadImage)
+    console.log('imgRef.current', imgRef.current)
+    if (imgRef.current) {
+      observeDom(imgRef.current, loadImage)
+    }
   }, [image])
   return (
     <div className="wrapper">

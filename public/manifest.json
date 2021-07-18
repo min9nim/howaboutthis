@@ -1,6 +1,9 @@
 {
+ "description": "강남역 주변 맛집 추천 :)",
+ "start_url": "/",
  "short_name": "Howaboutthis",
  "name": "오늘 메뉴 추천\uD83D\uDC4D",
+ "display": "standalone",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",
@@ -44,6 +47,5 @@
   "low-latency inking",
   "fast",
   "useful AI"
- ],
- "display": "standalone"
+ ]
 }
